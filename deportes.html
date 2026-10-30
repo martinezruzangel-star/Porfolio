@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>El deporte: qué es, tipos y beneficios</title>
+
+  <style>
+    /* ===== COLORES (cámbialos aquí y cambian en toda la página) ===== */
+    :root {
+      --tinta: #0f1f3d;   /* azul marino: textos y portada */
+      --papel: #f4f7fb;   /* fondo general */
+      --cancha: #1f5fd6;  /* azul de acento: enlaces y botones */
+      --pista: #f2c230;   /* amarillo: detalles */
+      --linea: #d5deec;   /* gris azulado: bordes */
+    }
+
+    /* ===== BASE ===== */
+    * { box-sizing: border-box; }
+    html { scroll-padding-top: 70px; }
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
+    }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--tinta);
+      background: var(--papel);
+    }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+    a { color: var(--cancha); }
+    :focus-visible { outline: 3px solid var(--pista); outline-offset: 3px; }
+
+    /* ===== MENÚ ===== */
+    .menu {
+      position: sticky; top: 0; z-index: 10;
+      background: var(--papel);
+      border-bottom: 1px solid var(--linea);
+    }
+    .menu .wrap { display: flex; flex-wrap: wrap; gap: 6px 22px; padding-top: 14px; padding-bottom: 14px; }
+    .menu a {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: .95rem; font-weight: 700;
+      color: var(--tinta); text-decoration: none;
+    }
+    .menu a:hover { color: var(--cancha); }
+
+    /* ===== PORTADA (las líneas imitan una pista de atletismo) ===== */
+    .portada {
+      background-color: var(--tinta);
+      background-image: repeating-linear-gradient(
+        to bottom, transparent 0 54px, rgba(255,255,255,.14) 54px 56px
+      );
+      color: #fff;
+      padding: 90px 0 80px;
+    }
+    .portada h1 {
+      font-family: "Arial Black", Helvetica, Arial, sans-serif;
+      font-size: clamp(3rem, 11vw, 6.5rem);
+      line-height: 1; margin: 0 0 18px;
+    }
+    .portada p { max-width: 520px; font-size: 1.25rem; margin: 0 0 28px; }
+    .boton {
+      display: inline-block; border: none; cursor: pointer;
+      font-family: Helvetica, Arial, sans-serif; font-weight: 700; font-size: 1rem;
+      background: var(--pista); color: var(--tinta);
+      padding: 13px 24px; border-radius: 4px; text-decoration: none;
+    }
+    .boton:hover { background: #ffd54d; }
+
+    /* ===== SECCIONES ===== */
+    section { padding: 64px 0 8px; }
+    h2 {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 2rem; margin: 0 0 8px;
+    }
+    h2::after {
+      content: ""; display: block;
+      width: 56px; height: 5px; margin-top: 10px;
+      background: var(--pista);
+    }
+    h3 { font-family: Helvetica, Arial, sans-serif; margin: 0 0 4px; }
+    .texto { max-width: 68ch; }
+
+    /* Tipos de deporte */
+    .tipos { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 28px 36px; margin-top: 28px; }
+    .tipos div { border-left: 4px solid var(--cancha); padding-left: 16px; }
+    .tipos p { margin: 0; }
+
+    /* Beneficios */
+    .beneficios li { margin-bottom: 8px; }
+
+    /* Línea del tiempo */
+    .historia { list-style: none; padding: 0; margin: 28px 0 0; border-left: 3px solid var(--linea); }
+    .historia li { position: relative; padding: 0 0 26px 26px; }
+    .historia li::before {
+      content: ""; position: absolute; left: -9px; top: 9px;
+      width: 15px; height: 15px; border-radius: 50%;
+      background: var(--cancha); border: 3px solid var(--papel);
+    }
+    .historia strong { font-family: Helvetica, Arial, sans-serif; font-size: 1.2rem; display: block; }
+
+    /* Tabla */
+    .tabla-caja { overflow-x: auto; margin-top: 24px; }
+    table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 1rem; }
+    th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--linea); }
+    th { background: var(--tinta); color: #fff; font-family: Helvetica, Arial, sans-serif; }
+
+    /* Dato curioso */
+    .curiosidad {
+      margin-top: 24px; padding: 24px;
+      background: #fff; border: 1px solid var(--linea); border-left: 6px solid var(--pista);
+      min-height: 110px;
+    }
+
+    /* ===== PIE ===== */
+    footer { margin-top: 72px; padding: 32px 0; background: var(--tinta); color: #fff; font-size: .95rem; }
+    footer p { margin: 2px 0; }
+  </style>
+</head>
+
+<body>
+
+  <!-- MENÚ: cada enlace lleva a una sección mediante su id -->
+  <nav class="menu">
+    <div class="wrap">
+      <a href="#inicio">Inicio</a>
+      <a href="#que-es">Qué es</a>
+      <a href="#tipos">Tipos</a>
+      <a href="#beneficios">Beneficios</a>
+      <a href="#historia">Historia</a>
+      <a href="#populares">Deportes populares</a>
+      <a href="#curiosidad">Curiosidad</a>
+    </div>
+  </nav>
+
+  <!-- PORTADA -->
+  <header class="portada" id="inicio">
+    <div class="wrap">
+      <h1>El deporte</h1>
+      <p>Qué es, cómo se clasifica, por qué es bueno para el cuerpo y la mente, y cómo ha cambiado a lo largo de la historia.</p>
+      <a class="boton" href="#tipos">Ver los tipos de deporte</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section id="que-es">
+      <h2>¿Qué es el deporte?</h2>
+      <div class="texto">
+        <p>El deporte es una actividad física que se practica siguiendo unas reglas y que suele implicar esfuerzo, entrenamiento y, muchas veces, competición. Se puede practicar en solitario, en equipo, por diversión o de forma profesional.</p>
+        <p>Además de mejorar la salud, el deporte enseña valores como la constancia, el respeto al rival y la colaboración con los compañeros.</p>
+      </div>
+    </section>
+
+    <section id="tipos">
+      <h2>Tipos de deporte</h2>
+      <div class="tipos">
+        <div>
+          <h3>Individuales</h3>
+          <p>Se compite o se practica en solitario: atletismo, natación, tenis, gimnasia, ciclismo.</p>
+        </div>
+        <div>
+          <h3>De equipo</h3>
+          <p>Varios jugadores colaboran para lograr un objetivo común: fútbol, baloncesto, voleibol, balonmano.</p>
+        </div>
+        <div>
+          <h3>De combate</h3>
+          <p>Dos oponentes se enfrentan directamente: judo, boxeo, esgrima, taekwondo.</p>
+        </div>
+        <div>
+          <h3>De naturaleza y aventura</h3>
+          <p>Se practican al aire libre y dependen del entorno: escalada, surf, esquí, senderismo.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="beneficios">
+      <h2>Beneficios del deporte</h2>
+      <div class="texto">
+        <ul class="beneficios">
+          <li><strong>Salud física:</strong> fortalece el corazón, los huesos y los músculos.</li>
+          <li><strong>Salud mental:</strong> ayuda a reducir el estrés y mejora el estado de ánimo.</li>
+          <li><strong>Vida social:</strong> permite conocer gente y trabajar en equipo.</li>
+          <li><strong>Disciplina:</strong> fomenta la constancia y la capacidad de superación.</li>
+        </ul>
+        <p>Según la Organización Mundial de la Salud (OMS), los adultos deberían hacer entre 150 y 300 minutos de actividad física moderada a la semana.</p>
+      </div>
+    </section>
+
+    <section id="historia">
+      <h2>Un poco de historia</h2>
+      <ol class="historia">
+        <li><strong>776 a. C.</strong> Fecha tradicional de los primeros Juegos Olímpicos de la Antigua Grecia, celebrados en Olimpia.</li>
+        <li><strong>1863</strong> En Inglaterra se fundó la Football Association y se fijaron las primeras reglas del fútbol moderno.</li>
+        <li><strong>1891</strong> James Naismith inventó el baloncesto en Springfield (Estados Unidos).</li>
+        <li><strong>1896</strong> Se celebraron en Atenas los primeros Juegos Olímpicos de la era moderna.</li>
+      </ol>
+    </section>
+
+    <section id="populares">
+      <h2>Algunos deportes populares</h2>
+      <div class="tabla-caja">
+        <table>
+          <thead>
+            <tr><th>Deporte</th><th>Tipo</th><th>Jugadores por equipo</th><th>Origen de sus reglas</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Fútbol</td><td>De equipo</td><td>11</td><td>Inglaterra, 1863</td></tr>
+            <tr><td>Baloncesto</td><td>De equipo</td><td>5 en pista</td><td>Estados Unidos, 1891</td></tr>
+            <tr><td>Voleibol</td><td>De equipo</td><td>6 en pista</td><td>Estados Unidos, 1895</td></tr>
+            <tr><td>Tenis</td><td>Individual o dobles</td><td>1 o 2</td><td>Inglaterra, siglo XIX</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="curiosidad">
+      <h2>Dato curioso</h2>
+      <div class="curiosidad" id="dato" aria-live="polite">Pulsa el botón para descubrir un dato.</div>
+      <p><button class="boton" onclick="nuevoDato()">Otro dato curioso</button></p>
+    </section>
+
+  </main>
+
+  <!-- PIE: cambia estos datos por los tuyos -->
+  <footer>
+    <div class="wrap">
+      <p>Trabajo de [Tu nombre]</p>
+      <p>[Asignatura] — [Curso]</p>
+    </div>
+  </footer>
+
+  <script>
+    // Lista de datos curiosos: puedes añadir o quitar frases entre comillas
+    const datos = [
+      "Un maratón mide 42,195 kilómetros.",
+      "Los primeros partidos de baloncesto se jugaban con cestas de melocotones colgadas de la pared.",
+      "Los Juegos Olímpicos modernos se celebran cada cuatro años.",
+      "La FIFA reúne a 211 federaciones nacionales de fútbol.",
+      "Los primeros Juegos Olímpicos antiguos se celebraron en Olimpia, en Grecia."
+    ];
+    let ultimo = -1;
+
+    // Se ejecuta al pulsar el botón: elige un dato distinto al anterior
+    function nuevoDato() {
+      let i;
+      do { i = Math.floor(Math.random() * datos.length); } while (i === ultimo);
+      ultimo = i;
+      document.getElementById("dato").textContent = datos[i];
+    }
+  </script>
+</body>
+</html>
